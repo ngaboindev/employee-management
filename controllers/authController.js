@@ -149,6 +149,11 @@ exports.forgotPassword = asyncHandler(async (req, res) => {
  */
 
 exports.resetPassword = asyncHandler(async (req, res) => {
+  if (!req.body.password) {
+    res.status(400);
+    throw Error("new password is required");
+  }
+
   const resetToken = crypto
     .createHash("sha256")
     .update(req.params.resettoken)

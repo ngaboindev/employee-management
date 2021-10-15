@@ -1,0 +1,325 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Employee Management",
+    "description": "Restful API  for an employee management system.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://empmanagementapi.herokuapp.com/"
+    },
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/api/v1/": {
+      "get": {
+        "summary": "welcoming message",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/register/manager": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Creating manager account",
+        "requestBody": {
+          "description": "Required Payload For Sign Up",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Manager"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Employee Created Successful",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "foo": {
+                    "value": {
+                      "name": "John Doe",
+                      "email": "johndoe@gmail.com",
+                      "phone": "1234567891",
+                      "password": "$2a$10$7w6uDZsyZbAMajdAL7GRgu2CYpUMBy1bRHgGX/z1.CNgITGdwHQoG",
+                      "nationalID": 123456789123456,
+                      "dob": "1990-08-09T22:00:00.000Z",
+                      "status": "active",
+                      "position": "manager",
+                      "isEmailConfirmed": false,
+                      "_id": "61698f130f4146d3e0f5724e",
+                      "createdAt": "2021-10-15T14:24:19.803Z",
+                      "updatedAt": "2021-10-15T14:24:19.803Z",
+                      "confirmToken": "f7268a90d8922701d3ee3ebcb2a762cc5654f99cb93b22d6f25058029067394d",
+                      "code": "EMP443",
+                      "__v": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User Supplied Malformatted Data or Employee already exists",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Employee already exists"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login/manager": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Sign In Manager.",
+        "requestBody": {
+          "description": "Required Payload For Manager To Sign In",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Manager Logged in successful",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "foo": {
+                    "value": {
+                      "_id": "61698f130f4146d3e0f5724e",
+                      "name": "Robert Ngabo",
+                      "email": "robbingabo9@gmail.com",
+                      "isEmailConfirmed": false,
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjk4ZjEzMGY0MTQ2ZDNlMGY1NzI0ZSIsImlhdCI6MTYzNDMwODY2OCwiZXhwIjoxNjM2OTAwNjY4fQ.cQrAwdcIQ_hYGMUxqJAA7g1vxUxTufl54--KKf-FfE0"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Invalid Email or Password"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/confirm/:confirmToken": {
+      "put": {
+        "tags": ["Authentication"],
+        "summary": "manager confirm email",
+        "parameters": [
+          {
+            "name": "confirmToken",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email confirmed successful",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "foo": {
+                    "value": {
+                      "employee": {
+                        "_id": "61698fe1f9bb9782a9dcc853",
+                        "name": "Jeff Bezos",
+                        "email": "jeff@gmail.com",
+                        "phone": "0790852427",
+                        "password": "$2a$10$Mztm2eyQVftjKfS3MfA8ouOrS1Kfa1zRX1xgOuN2WcQa.wjCZ1D7m",
+                        "nationalID": 1234567890123456,
+                        "dob": "1988-09-30T22:00:00.000Z",
+                        "status": "active",
+                        "position": "manager",
+                        "isEmailConfirmed": true,
+                        "createdAt": "2021-10-15T14:27:45.934Z",
+                        "updatedAt": "2021-10-15T14:53:33.310Z",
+                        "confirmToken": "eaca9444744359741e562783a3fe19dcf9f9e27155bd40a2d9aee8545558f882",
+                        "code": "EMP5708",
+                        "__v": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": { "message": "Invalid token" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/forgotpassword": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "manager forgot password feature",
+        "requestBody": {
+          "description": "Required Email to send reset link",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reset"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email sent successful",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "foo": {
+                    "value": {
+                      "message": "Email sent"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "there is no employee with that email"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/resetpassword/:resettoken": {
+      "put": {
+        "tags": ["Authentication"],
+        "summary": "Reset password",
+        "parameters": [
+          {
+            "name": "resettoken",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "example": "NEWstrongPassword18;3"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New password added successful"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "Manager": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Robert Ngabo"
+          },
+          "email": {
+            "type": "string",
+            "example": "robbingabo9@gmail.com"
+          },
+          "phone": {
+            "type": "number",
+            "example": "0790852427"
+          },
+          "password": {
+            "type": "string",
+            "example": "strongPassword18;3"
+          },
+          "nationalID": {
+            "type": "number",
+            "example": "1234567890123456"
+          },
+          "dob": {
+            "type": "date",
+            "example": "10-01-1988"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "robbingabo9@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "strongPassword18;3"
+          }
+        }
+      },
+      "Reset": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "required": true,
+            "example": "robbingabo9@gmail.com"
+          }
+        }
+      }
+    }
+  }
+}

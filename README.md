@@ -41,7 +41,7 @@ npm install
 ### Start local server
 
 ```shell
- $ npm start
+ $ npm run dev
 ```
 
 ### Test
@@ -51,6 +51,10 @@ for running test do
 ```shell
  $ npm test
 ```
+
+## DOCUMENTATION
+
+**[VISIT API DOCUMENTATION HERE]('https://empmanagementapi.herokuapp.com/documentation/v1')**
 
 ## API ENDPOINTS
 
@@ -65,6 +69,16 @@ for running test do
 | POST        | `/auth/confirm/:confirmToken`     | Confirm Email sent to Manager's email                             |
 | POST        | `/auth/forgotpassword`            | Reset the password by providing an email address to get rest link |
 | POST        | `/auth/resetpassword/:resettoken` | Link to reset password by providing new password for Manager      |
+
+### EMPLOYEE FEATURES END POINTS (ACCESS : MANAGER ONLY) : `/employee/`
+
+| HTTP METHOD | END POINT                | DESCRIPTION           |
+| ----------- | ------------------------ | --------------------- |
+| POST        | `/employee`              | Create a New Employee |
+| PUT         | `/employee/:id`          | Update Employee Infos |
+| DELETE      | `/employee/:id`          | Delete Employee       |
+| PUT         | `/employee/:id/suspend`  | Suspend an employee.  |
+| POST        | `/employee/:id/activate` | activate an employee  |
 
 ## Author
 
