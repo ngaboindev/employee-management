@@ -26,6 +26,10 @@ $ git --version
 $ git clone https://github.com/ngaboindev/taskforce-backend-challenge.git
 ```
 
+### Usage
+
+**Rename "_.env.example_" to "_.env_" and update values/settings to your own**
+
 ### Install dependencies
 
 with npm
