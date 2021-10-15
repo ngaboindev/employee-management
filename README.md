@@ -56,6 +56,16 @@ for running test do
 
 ### _BASEURL: `/api/v1`_
 
+### AUTHENTICATION END POINTS : `/auth/`
+
+| HTTP METHOD | END POINT                         | DESCRIPTION                                                       |
+| ----------- | --------------------------------- | ----------------------------------------------------------------- |
+| POST        | `/auth/register/manager`          | Create a New Manager                                              |
+| POST        | `/auth/login/manager`             | Authenticate Manager                                              |
+| POST        | `/auth/confirm/:confirmToken`     | Confirm Email sent to Manager's email                             |
+| POST        | `/auth/forgotpassword`            | Reset the password by providing an email address to get rest link |
+| POST        | `/auth/resetpassword/:resettoken` | Link to reset password by providing new password for Manager      |
+
 ## Author
 
 Robert Ngabo `<robbingabo9@gmail.com>`
