@@ -1,0 +1,28 @@
+swagger: "2"
+info:
+  title: TaskForce challenge 4.0 backend
+  description: a Restful API for an employee management system API
+  version: 1.0
+  contact:
+    name: Robert Ngabo
+    email: robbingabo9@gmail.com
+  liscense:
+    name: MIT
+  servers:
+    - url: "http://localhost:5000"
+      description: this is the local server
+    - url: "https://empmanagementapi.herokuapp.com"
+      description: this the production server
+
+schemes: [http, https]
+
+paths:
+  /api/v1/:
+    get:
+      summary: welcoming message
+      description: Returns welcoming message
+      responses:
+        200:
+          description: success
+          schema:
+            type: string
