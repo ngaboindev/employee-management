@@ -54,7 +54,7 @@ for running test do
 
 ## DOCUMENTATION
 
-**[VISIT API DOCUMENTATION HERE]('https://empmanagementapi.herokuapp.com/documentation/v1')**
+[VISIT API DOCUMENTATION HERE]('https://empmanagementapi.herokuapp.com/documentation/v1')
 
 ## API ENDPOINTS
 
