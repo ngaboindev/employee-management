@@ -263,11 +263,67 @@
           }
         }
       }
+    },
+    "/api/v1/employee": {
+      "post": {
+        "tags": ["Employee"],
+        "summary": "creating employee account",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "employee created and email sent"
+          }
+        }
+      }
     }
   },
 
   "components": {
     "schemas": {
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Robert Ngabo"
+          },
+          "email": {
+            "type": "string",
+            "example": "robbingabo9@gmail.com"
+          },
+          "phone": {
+            "type": "number",
+            "example": "0790852427"
+          },
+          "nationalID": {
+            "type": "number",
+            "example": "1234567890123456"
+          },
+          "position": {
+            "type": "string",
+            "enum": ["developer", "manager", "devops", "designer"],
+            "example": "developer"
+          },
+          "dob": {
+            "type": "date",
+            "example": "10-01-1988"
+          }
+        }
+      },
       "Manager": {
         "type": "object",
         "properties": {
@@ -318,6 +374,13 @@
             "required": true,
             "example": "robbingabo9@gmail.com"
           }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
         }
       }
     }

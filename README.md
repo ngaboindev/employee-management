@@ -44,14 +44,6 @@ npm install
  $ npm run dev
 ```
 
-### Test
-
-for running test do
-
-```shell
- $ npm test
-```
-
 ## DOCUMENTATION
 
 API DOC available here : https://empmanagementapi.herokuapp.com/documentation/v1
@@ -72,13 +64,20 @@ API DOC available here : https://empmanagementapi.herokuapp.com/documentation/v1
 
 ### EMPLOYEE FEATURES END POINTS (ACCESS : MANAGER ONLY) : `/employee/`
 
-| HTTP METHOD | END POINT                | DESCRIPTION           |
-| ----------- | ------------------------ | --------------------- |
-| POST        | `/employee`              | Create a New Employee |
-| PUT         | `/employee/:id`          | Update Employee Infos |
-| DELETE      | `/employee/:id`          | Delete Employee       |
-| PUT         | `/employee/:id/suspend`  | Suspend an employee.  |
-| POST        | `/employee/:id/activate` | activate an employee  |
+| HTTP METHOD | END POINT                                  | DESCRIPTION                                       |
+| ----------- | ------------------------------------------ | ------------------------------------------------- |
+| GET         | `/employee?code=EMP321&position=developer` | search employee based on position,name,code,phone |
+| POST        | `/employee`                                | Create a New Employee                             |
+| PUT         | `/employee/:id`                            | Update Employee Infos                             |
+| DELETE      | `/employee/:id`                            | Delete Employee                                   |
+| PUT         | `/employee/:id/suspend`                    | Suspend an employee.                              |
+| POST        | `/employee/:id/activate`                   | activate an employee                              |
+
+### Things i wish i've done if i had more time
+
+- unit & integration tests
+- finishing documentation
+- doing CD/CI
 
 ## Author
 

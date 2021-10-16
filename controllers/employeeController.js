@@ -3,6 +3,24 @@ const Employee = require("../models/Employee");
 const sendEmail = require("../utils/sendEmail");
 
 /**
+ * @descr search for an employee based on his position, name, email, phone number or code.
+ * @route GET /api/v1/employee/
+ * @access Private (Managers only)
+ */
+
+exports.getEmployees = asyncHandler(async (req, res) => {
+  const reqQuery = { ...req.query };
+
+  let queryStr = JSON.stringify(reqQuery);
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in)\b/g,
+    (match) => `$${match}`
+  );
+  const employees = await Employee.find(JSON.parse(queryStr));
+  res.json({ employees });
+});
+
+/**
  * @descr Register as manager
  * @route POST /api/v1/employee/
  * @access Private (Managers only)
