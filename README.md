@@ -38,6 +38,14 @@ with npm
 npm install
 ```
 
+### Test app
+
+with npm
+
+```shell
+npm test
+```
+
 ### Start local server
 
 ```shell
